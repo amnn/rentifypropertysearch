@@ -3,7 +3,7 @@
 Solution to the Rentify Property Search Coding Problem (version 2.0.1).
 (Applicant: Ashok Menon)
 
-Live version: rentify-property-search.herokuapp.com
+{Live version}[http://rentify-property-search.herokuapp.com]
 
 = Frameworks/Tools/APIs used
 
