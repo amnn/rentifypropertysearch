@@ -1,0 +1,6 @@
+<h1>Properties</h1>
+<ul>
+<% @properties.each do |property| -%>
+    <li><%= link_to property.name, property %></li>
+<% end -%>
+</ul>

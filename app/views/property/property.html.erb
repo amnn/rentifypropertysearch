@@ -1,0 +1,6 @@
+<h1><%= @property.name %></h1>
+<ul>
+<% @similar.each do |sim| -%>
+    <li><%= sim.name %></li>
+<% end -%>
+</ul>
