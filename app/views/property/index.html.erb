@@ -1,9 +1,14 @@
-<div>
-    <%= text_field_tag                            :query,
-                                          params[:query], 
-                       placeholder: "I'm looking for...",
-                       class:             'search-query',
-                       id:                      'search' %>
+<div id='index_wrap'>
+<div id='index_content'>
+
+    <div>
+        <%= text_field_tag                            :query,
+                                              params[:query], 
+                           placeholder: "I'm looking for...",
+                           class:             'search-query',
+                           id:                      'search' %>
+    </div>
+    <%= render partial: 'properties', locals: { properties: @properties } %>
+    <%= render 'back' if !params[:query].blank? -%>
 </div>
-<%= render partial: 'properties', locals: { properties: @properties } %>
-<%= render 'back' if !params[:query].blank? -%>
+</div>

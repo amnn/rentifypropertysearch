@@ -1,3 +1,82 @@
-<h1><%= @property.name %></h1>
-<%= render partial: 'properties', locals: { properties: @similar } %>
-<%= render 'back' %>
+<%= content_for :js do %>
+<script type='text/javascript'>
+
+    var map;
+
+    function placeMarker( lat, long, label )
+    {
+        var latLng = new google.maps.LatLng( lat, long );
+
+        return new google.maps.Marker( {
+            position: latLng,
+            map:         map,
+            title:     label
+        } );
+
+    }
+
+    $( function() { 
+        
+        var center = new google.maps.LatLng( <%=  @property.latitude %>,
+                                             <%= @property.longitude %> )
+
+        map = new google.maps.Map( $('#map')[0], {
+
+            zoom:                                 16,
+            center:                           center,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+
+        } );
+
+        var circle = new google.maps.Circle( {
+            
+            center:         center,
+            clickable:       false,
+            map:               map,
+            radius:          20000,
+            strokeColor: "#73b0cc",
+            fillColor:   "#73b0cc"
+
+        } );
+
+        map.fitBounds( circle.getBounds() );
+
+        var pMarker = placeMarker( <%=         @property.latitude %>,
+                                   <%=        @property.longitude %>,
+                                   <%= raw @property.name.inspect %> );
+
+        pMarker.setAnimation( google.maps.Animation.BOUNCE );
+
+        <% @similar.each do |prop| -%>
+
+        var sMarker = placeMarker( <%=         prop.latitude %>,
+                                   <%=        prop.longitude %>,
+                                   <%= raw prop.name.inspect %> );
+
+        <% end -%>
+
+    } );
+
+</script>
+<% end -%>
+
+<div id='property_wrap'>
+
+<div class='row'><h1><%= @property.name %></h1></div>
+
+<div class='row'>
+
+    <div id='similar_list' class='span4'>
+        <%= render partial:             'properties', 
+                   locals:  { properties: @similar } %>
+    </div>
+
+    <div id="map_view" class='rounded span8'>
+        <div id="map" ></div>
+    </div>
+
+</div>
+
+<div class='row'><%= render 'back' %></div>
+
+</div>

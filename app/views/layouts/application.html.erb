@@ -5,13 +5,12 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyCQRdzPnvDb8r6YGGH7xsbLGEAetqks4l4&sensor=false" %>
+  <%= yield(:js) %>
   <%= csrf_meta_tags %>
 </head>
 <body>
     
-    <div id='wrap'><div id='content'>
-        <%= yield %>
-    </div></div>
+    <%= content_for?(:body) ? yield(:body) : yield %>
 
 </body>
 </html>

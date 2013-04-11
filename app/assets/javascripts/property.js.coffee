@@ -17,8 +17,6 @@ $ ->
 
         geocoder.geocode { 'latLng': latLng }, (res, status) =>
             $(this).append( addr res ) if status == 'OK'
-            console.log( status + " " + latLng )
-            console.log( res[0].formatted_address )
 
 
 
