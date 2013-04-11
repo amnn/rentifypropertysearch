@@ -2,9 +2,10 @@ class PropertyController < ApplicationController
   include PropertyHelper
 
   # GET /
+  # POST / (:query)
   def index
 
-    @properties = Property.all
+    @properties = Property.search( params[:query] || "" )
 
   end
 

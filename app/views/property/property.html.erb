@@ -1,6 +1,3 @@
 <h1><%= @property.name %></h1>
-<ul>
-<% @similar.each do |sim| -%>
-    <li><%= sim.name %></li>
-<% end -%>
-</ul>
+<%= render partial: 'properties', locals: { properties: @similar } %>
+<%= render 'back' %>

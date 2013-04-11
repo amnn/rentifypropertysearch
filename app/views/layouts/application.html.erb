@@ -4,11 +4,14 @@
   <title>Property Search</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyCQRdzPnvDb8r6YGGH7xsbLGEAetqks4l4&sensor=false" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+    
+    <div id='wrap'><div id='content'>
+        <%= yield %>
+    </div></div>
 
 </body>
 </html>

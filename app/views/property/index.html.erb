@@ -1,6 +1,9 @@
-<h1>Properties</h1>
-<ul>
-<% @properties.each do |property| -%>
-    <li><%= link_to property.name, property %></li>
-<% end -%>
-</ul>
+<div>
+    <%= text_field_tag                            :query,
+                                          params[:query], 
+                       placeholder: "I'm looking for...",
+                       class:             'search-query',
+                       id:                      'search' %>
+</div>
+<%= render partial: 'properties', locals: { properties: @properties } %>
+<%= render 'back' if !params[:query].blank? -%>

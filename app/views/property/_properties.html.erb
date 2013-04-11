@@ -1,0 +1,11 @@
+<ul class='property-list' >
+<% properties.each do |prop| -%>
+    <li>
+        <span class='label label-info'>
+            <%= pluralize prop.bedroom_count, "Bedroom" %>
+        </span>
+        <%= link_to prop.name, prop %>
+        <%= hidden_field_tag prop.name, "#{prop.latitude},#{prop.longitude}" %>
+    </li>
+<% end -%>
+</ul>

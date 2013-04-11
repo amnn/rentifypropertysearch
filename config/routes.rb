@@ -2,7 +2,8 @@ Rentify::Application.routes.draw do
   
   root to: 'property#index'
 
-  match 'property/:id' => 'property#property', via: :get, as: :property
+  match 'search/:query' => 'property#index',    via: :get, as:   :search
+  match 'property/:id'  => 'property#property', via: :get, as: :property
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

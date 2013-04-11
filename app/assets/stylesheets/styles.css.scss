@@ -5,6 +5,19 @@ body * {
     padding: 0 px;
 }
 
-body {
-    background-color:#fefefe;
+body { 
+
+    background-color: #fdfdfd; 
+    padding-top:         40px;
+
+}
+
+#wrap {
+    width:             500px;
+    margin:           0 auto;
+    overflow:           auto;
+}
+
+#content {
+    margin:             10px;
 }
