@@ -38,7 +38,7 @@
 
     $( function() { 
         
-        $( ".property-list li").hover( highlightMarker, resetHighlight );
+        $( "#similar_list li").hover( highlightMarker, resetHighlight );
 
         var center = new google.maps.LatLng( <%=  @property.latitude %>,
                                              <%= @property.longitude %> );
@@ -88,13 +88,17 @@
 
 <div id='property_wrap'>
 
-<div class='row'><h1><%= @property.name %></h1></div>
-
 <div class='row'>
 
-    <div id='similar_list' class='span4'>
-        <%= render partial:             'properties', 
-                   locals:  { properties: @similar } %>
+    <div class='span4'>
+        <div id="current_property">
+            <%= render partial:                'properties', 
+                       locals:  { properties: [@property] } %>
+        </div>
+        <div id="similar_list">
+            <%= render partial:                'properties', 
+                       locals:     { properties: @similar } %>
+        </div>
     </div>
 
     <div id="map_view" class='rounded span8'>
