@@ -7,6 +7,13 @@ class PropertyController < ApplicationController
 
     @properties = Property.search( params[:query] || "" )
 
+    respond_to do |format|
+
+      format.html
+      format.json { render json: @properties }
+
+    end
+
   end
 
   # GET /property/:id
@@ -18,6 +25,13 @@ class PropertyController < ApplicationController
     
     @similar.select!  { |prop| distance( @property, prop ) <= 20.0 }
     @similar.sort_by! { |prop| distance( @property, prop ) }
+
+    respond_to do |format|
+
+      format.html
+      format.json { render json: { property: @property, similar: @similar } }
+
+    end
 
   end
 

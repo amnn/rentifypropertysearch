@@ -2,6 +2,7 @@ Rentify::Application.routes.draw do
   
   root to: 'property#index'
 
+  match 'index'         => 'property#index',    via: :get 
   match 'search/:query' => 'property#index',    via: :get, as:   :search
   match 'property/:id'  => 'property#property', via: :get, as: :property
 
