@@ -9,7 +9,7 @@ $ ->
     geocoder = new google.maps.Geocoder()
 
     $('.property-list li').each (i,e) ->
-        strLatLng =         $( this ).children( "input[type='hidden']" ).
+        strLatLng =         $( this ).children(    "input.prop-latlng" ).
                                            first().val().split( ',', 2 )
 
         latLng    = new google.maps.LatLng( parseFloat( strLatLng[0] ), 

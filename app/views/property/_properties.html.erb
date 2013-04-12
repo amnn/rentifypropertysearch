@@ -5,7 +5,10 @@
             <%= pluralize prop.bedroom_count, "Bedroom" %>
         </span>
         <%= link_to prop.name, prop %>
-        <%= hidden_field_tag prop.name, "#{prop.latitude},#{prop.longitude}" %>
+        <%= hidden_field_tag                       prop.name + " latlng", 
+                                    "#{prop.latitude},#{prop.longitude}", 
+                             class:                         'prop-latlng' %>
+        <%= hidden_field_tag prop.name + " id", prop.id, class: 'prop-id' %>          
     </li>
 <% end -%>
 </ul>

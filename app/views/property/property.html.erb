@@ -3,6 +3,9 @@
 
     var map;
 
+    var pMarker;
+    var markers = {};
+
     function placeMarker( lat, long, label )
     {
         var latLng = new google.maps.LatLng( lat, long );
@@ -15,8 +18,28 @@
 
     }
 
+    function propertyID( prop ) {
+        return parseInt( $(prop).children( "input.prop-id" ).first().val() );
+    }
+
+    function highlightMarker( e ) {
+        var id = propertyID( this );
+
+        pMarker.setAnimation(                             null );
+        markers[id].setAnimation( google.maps.Animation.BOUNCE );
+    };
+
+    function resetHighlight( e ) {
+        var id = propertyID( this );
+
+        pMarker.setAnimation( google.maps.Animation.BOUNCE );
+        markers[id].setAnimation(                     null );
+    };
+
     $( function() { 
         
+        $( ".property-list li").hover( highlightMarker, resetHighlight );
+
         var center = new google.maps.LatLng( <%=  @property.latitude %>,
                                              <%= @property.longitude %> );
 
@@ -41,17 +64,20 @@
 
         map.fitBounds( circle.getBounds() );
 
-        var pMarker = placeMarker( <%=         @property.latitude %>,
-                                   <%=        @property.longitude %>,
-                                   <%= raw @property.name.inspect %> );
+        pMarker = placeMarker( <%=         @property.latitude %>,
+                               <%=        @property.longitude %>,
+                               <%= raw @property.name.inspect %> );
 
-        pMarker.setAnimation( google.maps.Animation.BOUNCE );
+        pMarker.setAnimation(                  google.maps.Animation.BOUNCE );
+        pMarker.setIcon( "http://maps.google.com/mapfiles/marker_green.png" );
 
         <% @similar.each do |prop| -%>
 
         var sMarker = placeMarker( <%=         prop.latitude %>,
                                    <%=        prop.longitude %>,
                                    <%= raw prop.name.inspect %> );
+
+        markers[<%= prop.id %>] = sMarker;
 
         <% end -%>
 
