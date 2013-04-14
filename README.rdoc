@@ -5,7 +5,9 @@ Solution to the Rentify Property Search Coding Problem (version 2.0.1).
 
 {Live version}[http://rentify-property-search.herokuapp.com]
 
-= Frameworks/Tools/APIs used
+See also, iOS companion app (Work in Progress): {iOS App}[http://https://github.com/asQuirreL/rentifyios]
+
+=== Frameworks/Tools/APIs used
 
 * Ruby on Rails
 * Twitter Bootstrap
